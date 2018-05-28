@@ -1,0 +1,22 @@
+def SymbolToNumber(x):          # Symbolen (Buchstaben) Zahlen zuweisen
+    if x == 'A':
+        return 0
+    elif x == 'C':
+        return 1
+    elif x == 'G':
+        return 2
+    elif x == 'T':
+        return 3
+    else:
+        return " "
+
+def PatternToNumber(pattern):       # Zählfunktion definieren
+    if pattern=="":                 # wenn kein Input dann zurück zu 0, sonst Endlosschleife
+        return 0
+    symbol = pattern[-1]            # das letzte Zeichen des Pattern ist Symbol
+    prefix = pattern[0:-1]      # restliches Patter ohne Symbol, recursive Funktion, die den Rest mit 4 mal nimmt
+                                 # (4^0, 4^1, 4^2, etc) und das 4. Sybol des Pattern hinzufügen
+    return 4 * PatternToNumber(prefix) + SymbolToNumber(symbol)
+
+pattern = "CTTCTCACGTACAACAAAATC"
+print (PatternToNumber(pattern))
